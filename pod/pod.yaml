@@ -11,3 +11,15 @@ spec:
       ports:
         - name: myapp
           containerPort: 8080
+      readinessProbe:
+        httpGet:
+          path: /heartbeat
+          port: 8080
+        initialDelaySeconds: 3
+        periodSeconds: 5
+      livenessProbe:
+        httpGet:
+          path: /heartbeat
+          port: 8080
+        initialDelaySeconds: 3
+        periodSeconds: 5
