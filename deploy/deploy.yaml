@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: myapp
-          image: llzzrrr/myapp:v2
+          image: llzzrrr/myapp:v3
           ports:
             - containerPort: 8080
           readinessProbe:

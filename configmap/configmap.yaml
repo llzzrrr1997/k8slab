@@ -1,0 +1,27 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: cm-demo
+  namespace: default
+data:
+  data.msg: hello,world
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: testcm-pod
+spec:
+  containers:
+    - name: testcm
+      image: busybox
+      command: [ "/bin/sh", "-c", "echo $(msg)" ]
+      env:
+        - name: msg
+          valueFrom:
+            configMapKeyRef:
+              name: cm-demo
+              key: data.msg
+      envFrom:
+        - configMapRef:
+            name: cm-demo
